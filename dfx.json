@@ -1,34 +1,16 @@
 {
   "canisters": {
-    "temp": {
-      "main": "src/temp/main.mo",
+    "callee": {
+      "main": "src/callee.mo",
       "type": "motoko"
     },
-    "temp_assets": {
-      "dependencies": [
-        "temp"
-      ],
-      "frontend": {
-        "entrypoint": "src/temp_assets/public/index.js"
-      },
-      "source": [
-        "src/temp_assets/assets",
-        "dist/temp_assets/"
-      ],
-      "type": "assets"
+    "caller": {
+      "main": "src/caller.mo",
+      "type": "motoko"
+    },
+    "maker": {
+      "main": "src/maker.mo",
+      "type": "motoko"
     }
-  },
-  "defaults": {
-    "build": {
-      "packtool": ""
-    }
-  },
-  "dfx": "0.6.26",
-  "networks": {
-    "local": {
-      "bind": "127.0.0.1:8000",
-      "type": "ephemeral"
-    }
-  },
-  "version": 1
+  }
 }

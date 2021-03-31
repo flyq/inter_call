@@ -1,20 +1,65 @@
 # temp
 
-Welcome to your new temp project and to the internet computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+terminal 1:
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+```shell
+cd inter_call
 
-To learn more before you start working with temp, see the following documentation available online:
+sudo dfx start --clean
+```
 
-- [Quick Start](https://sdk.dfinity.org/docs/quickstart/quickstart-intro.html)
-- [SDK Developer Tools](https://sdk.dfinity.org/docs/developers-guide/sdk-guide.html)
-- [Motoko Programming Language Guide](https://sdk.dfinity.org/docs/language-guide/motoko.html)
-- [Motoko Language Quick Reference](https://sdk.dfinity.org/docs/language-guide/language-manual.html)
+terminal 2:
+```shell
+dfx canister create --all
+Creating canister "callee"...
+Creating the canister using the wallet canister...
+Creating a wallet canister on the local network.
+The wallet canister on the "local" network for user "default" is "rwlgt-iiaaa-aaaaa-aaaaa-cai"
+"callee" canister created with canister id: "rrkah-fqaaa-aaaaa-aaaaq-cai"
+Creating canister "caller"...
+Creating the canister using the wallet canister...
+"caller" canister created with canister id: "ryjl3-tyaaa-aaaaa-aaaba-cai"
+Creating canister "maker"...
+Creating the canister using the wallet canister...
+"maker" canister created with canister id: "r7inp-6aaaa-aaaaa-aaabq-cai"
 
-If you want to start working on your project right away, you might want to try the following commands:
+sudo dfx build --all
+Building canisters...
 
-```bash
-cd temp/
-dfx help
-dfx config --help
+sudo dfx canister install callee
+Installing code for canister callee, with canister_id rrkah-fqaaa-aaaaa-aaaaq-cai
+
+# use the canister id of callee
+eval dfx canister install caller --argument '"(principal \"rrkah-fqaaa-aaaaa-aaaaq-cai\")"'
+Installing code for canister caller, with canister_id ryjl3-tyaaa-aaaaa-aaaba-cai
+
+sudo dfx canister install maker
+Installing code for canister maker, with canister_id r7inp-6aaaa-aaaaa-aaabq-cai
+
+dfx canister call callee get
+(1)
+
+dfx canister call callee add1
+(2)
+
+dfx canister call caller get
+(2)
+
+dfx canister call caller add1
+(3)
+
+eval dfx canister call maker newCaller '"(principal \"rrkah-fqaaa-aaaaa-aaaaq-cai\")"'
+(principal "rkp4c-7iaaa-aaaaa-aaaca-cai")
+
+dfx canister call maker getcallers
+(vec { principal "rkp4c-7iaaa-aaaaa-aaaca-cai" })
+
+dfx canister call "rkp4c-7iaaa-aaaaa-aaaca-cai" get
+(3)
+
+dfx canister call "rkp4c-7iaaa-aaaaa-aaaca-cai" add1
+(4)
+
+dfx canister call callee get
+(4)
 ```
