@@ -63,3 +63,9 @@ dfx canister call "rkp4c-7iaaa-aaaaa-aaaca-cai" add1
 dfx canister call callee get
 (4)
 ```
+
+### reference：
+[cyan](https://github.com/ccyanxyz)
+
+[dfinity forum](https://forum.dfinity.org/t/bug-report-the-compiler-moc-cant-compile-the-code-with-a-newly-created-actor-type/2332/3)
+
